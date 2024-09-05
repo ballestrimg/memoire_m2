@@ -1,0 +1,185 @@
+\documentclass[a4paper,12pt, twoside]{book}
+\usepackage[T1]{fontenc} % package pour gérer les fontes
+\usepackage{inputenc} % permet d'utiliser des caractères accentués dans le fichier source (.tex)
+\usepackage{fontspec} % nécessaire pour utiliser des polices spécifiques avec XeLaTeX ou LuaLaTeX
+\usepackage{lmodern} % charge la police Latin Modern, une version améliorée de Computer Modern
+\usepackage[english,french]{babel} % gère la langue du document et ajuste les règles typographiques
+\usepackage{appendix} % ajouter annexes
+\usepackage{pdfpages} % inclure PDF
+\usepackage{csquotes} % gère les citations
+\usepackage{xspace} % gère les espaces après les commandes personnalisées
+\usepackage{graphicx} % permet l'insertion d'images dans le document
+\usepackage{setspace} % permet de gérer les paramètres de l'interligne
+\usepackage{colortbl} % met de la couleur dans les lignes
+\usepackage{caption} % met de sous titres dans les images, schémas etc.
+    \captionsetup{font=small,labelfont=bf}
+
+% Pour afficher le titre courant d'un chapitre non numéroté (intro, conclusion, etc.)
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\slshape \leftmark}
+\fancyhead[RE]{\slshape \rightmark}
+\renewcommand{\headrulewidth}{0pt}
+
+\newcommand\mychapter[1]{%
+  \chapter*{#1}%
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % markboth redéfinit à la fois les en-têtes gauche et droit
+}
+
+\usepackage[style=enc, sorting=nyt, maxbibnames=10]{biblatex} % charger le style de l'ENC
+\addbibresource{03_bibliographie/shs_biblio.bib} % chemin pour l'inclusion de la bibliographie au fichier main.tex 
+\addbibresource{03_bibliographie/techno.bib} % chemin pour l'inclusion de la bibliographie au fichier main.tex 
+
+
+\usepackage{tocbibind} % pour l'inclusion de la liste des figures à la table des matière
+\usepackage{hyphenat} % césuration de mots automatique
+\hyphenation{mathéma-tiques récu-pérer}
+
+\usepackage{lipsum} % pour l'inclusion de texte aléatoire, c'était important pendant les phases de test
+
+\usepackage[pdfusetitle, pdfsubject={Mémoire TNAH — Vers une persistance numérique des collections : Développement d'outils IIIF au sein du DaSCH}, pdfkeywords={IIIF, persistance de données, green coding, gestion de données, Python, HTML, CSS, JavaScript, front end}]{hyperref}
+
+\usepackage{listings} % permet de formater et afficher du code source.
+\usepackage{xcolor} % permet de gérer et personnaliser les couleurs dans un document LaTeX.
+
+% Configuration des couleurs et du style pour le code Python
+
+%%%% Code crée à l'aide de ChatGPT : %%%%%
+% Définir des couleurs personnalisées avec des codes hexadécimaux
+\definecolor{mybackground}{HTML}{a9a9a9} % Couleur de fond
+\definecolor{mykeyword}{HTML}{b44de0}    % Couleur des mots-clés
+
+% Style pour Python
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{mybackground},   % Couleur de fond
+    commentstyle=\color{green},          % Style des commentaires
+    keywordstyle=\color{mykeyword}\bfseries,  % Style des mots-clés
+    numberstyle=\tiny\color{gray},       % Style des numéros de lignes
+    stringstyle=\color{yellow},             % Style des chaînes de caractères
+    basicstyle=\ttfamily\footnotesize,   % Style de base du texte
+    breaklines=true,                     % Retour à la ligne automatique
+    language=Python                      % Langage du code
+}
+
+\lstset{style=mystyle} % 
+
+%%%%%
+
+% commande pour l'italique en texte en anglais
+\newcommand{\eng}{\emph} 
+
+% applications et logiciels
+\newcommand{\cvt}{{DaSCH Converter}\xspace}
+\newcommand{\msh}{DaSCH Mesh\xspace}
+\newcommand{\diiif}{DaSCH IIIF\xspace}
+\newcommand{\bld}{Blender\xspace}
+\newcommand{\gmp}{GIMP\xspace}
+\newcommand{\mlb}{MeshLab\xspace}
+
+% stage 
+\newcommand{\dsc}{DaSCH\xspace}
+\newcommand{\rg}{Rita Gautschy\xspace}
+\newcommand{\enc}{École nationale des chartes\xspace}
+\newcommand{\tnah}{\textsc{tnah}\xspace}
+\newcommand{\DSC}{\eng{Swiss National Data and Service Center for the Humanities}\xspace}
+\newcommand{\dhlab}{\eng{Digital Humanities Lab} (DHLab)\xspace}
+\newcommand{\erid}{\eng{ERI Dispatch}\xspace}
+\newcommand{\ERID}{l'\eng{ERI} (\eng{Education}, \eng{Research and Innovation}) \eng{Dispatch}\xspace}
+\newcommand{\iiif}{\eng{International Image Interoperability Framework}\xspace}
+\newcommand{\psdn}{persistance de données\xspace}
+\newcommand{\sagw}{\eng{Swiss Academy of Humanities and Social Sciences} (SAGW)\xspace}
+\newcommand{\SNSFn}{\eng{Swiss National Science Foundation} (SNSF)\xspace}
+\newcommand{\unibas}{Universität Basel\xspace}
+
+% Concepts
+\newcommand{\gco}{\eng{green coding}\xspace}
+\newcommand{\gwsh}{\eng{greenwashing}\xspace}
+\newcommand{\opso}{\eng{open source}\xspace}
+\newcommand{\opdt}{\eng{Open Data}\xspace}
+\newcommand{\be}{\eng{back end}\xspace}
+\newcommand{\fe}{\eng{front end}\xspace}
+\newcommand{\g}[1]{\og#1~\fg}
+\newcommand{\ux}{\eng{UX}\xspace}
+\newcommand{\p}{[\ldots]\xspace}
+
+% IIIF concepts
+\newcommand{\iapit}{\eng{Image API 3.0}\xspace}
+\newcommand{\iapiq}{\eng{Image API 4.0}\xspace}
+\newcommand{\papit}{\eng{Presentation API 3.0}\xspace}
+\newcommand{\papiq}{\eng{Presentation API 4.0}\xspace}
+
+% langages de programmation
+\newcommand{\css}{\textsc{css}\xspace}
+\newcommand{\html}{\textsc{html}\xspace}
+\newcommand{\JS}{\textsc{JavaScript}\xspace}
+\newcommand{\py}{\textsc{Python}\xspace}
+
+% commandes pour les bibliothèques liées à Python
+\newcommand{\bs}{\textsc{Bootstrap}\xspace}
+\newcommand{\fsk}{\textsc{flask}\xspace}
+\newcommand{\FSK}{\textsc{Flask}\xspace}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{lightgray},   % Cor de fundo
+    commentstyle=\color{green},          % Estilo de comentário
+    keywordstyle=\color{blue}\bfseries,  % Estilo de palavras-chave
+    numberstyle=\tiny\color{gray},       % Estilo dos números das linhas
+    stringstyle=\color{red},             % Estilo das strings
+    basicstyle=\ttfamily\footnotesize,   % Estilo básico do texto
+    breaklines=true,                     % Quebra automática de linhas
+    language=Python                      % Linguagem do código
+}
+
+% pour retirer le titre courant d'une page vide avant un chapitre
+% modèle copié de https://github.com/Segolene-Albouy/Memoire-TNAH2019/blob/master/memoire.tex
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+
+% informations de la page de titre
+\title{Vers une persistance numérique des collections : Développement d'outils IIIF au sein du DaSCH}
+\author{Gilmar Ballestrim}
+\date{Septembre 2024}
+
+\begin{document}
+
+    % inclusion des parties de la disseration au fichier main.tex
+    \include{01_sections/01_titre}
+    \clearemptydoublepage
+    
+    \include{01_sections/02_resume}
+    \clearemptydoublepage
+    
+    \include{01_sections/03_abstract}
+    \clearemptydoublepage
+    
+    \include{01_sections/04_dedicace}
+    \clearemptydoublepage
+    
+    \include{01_sections/05_remerciements}
+    \clearemptydoublepage
+    
+    \include{01_sections/06_introduction}
+    \clearemptydoublepage
+    
+    \include{01_sections/07_part_01}
+    \clearemptydoublepage
+    
+    \include{01_sections/08_part_02}
+    \clearemptydoublepage
+    
+    \include{01_sections/09_part_03}
+    \clearemptydoublepage
+
+    \include{01_sections/10_conclusion}
+    \clearemptydoublepage
+    
+    \backmatter
+    \listoffigures
+        \clearemptydoublepage
+    \printbibliography
+    \addcontentsline{toc}{chapter}{Bibliographie}
+        \clearemptydoublepage
+    \tableofcontents
+    
+\end{document}
