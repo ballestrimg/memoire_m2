@@ -1,1 +1,1 @@
- Ce dépôt contient le code source et les données associés à mon mémoire de Master 2 à l'École nationale des chartes. Le sujet principal de ce mémoire est AJOUTER.
+ Ce dépôt contient le code source et les données associés à mon mémoire de Master 2 à l'École nationale des chartes. Le titre de ce mémoire est **Vers une persistance numérique des collections : Développement d'outils IIIF au sein du DaSCH**
